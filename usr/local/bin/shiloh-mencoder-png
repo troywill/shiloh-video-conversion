@@ -1,0 +1,14 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+FILE=${1}
+# mencoder f.avi -ss 0 -endpos 1 -o bar.avi
+# 1280x720
+# mencoder ${FILE} -vf scale=640:360 -ss 0 -endpos 3 -ovc lavc -oac copy -o jane.mp4
+# Audio format 0x4134504d is incompatible with '-oac copy', please try '-oac pcm' instead or use '-fafmttag' to override it.
+# mencoder ${FILE} -vf scale=640:360 -ovc lavc -oac pcm -o jane.mp4
+# mencoder ${FILE} -vf scale=320:180 -ovc lavc -oac pcm -o jane-quarter.mp4
+# mencoder ${FILE} -vf scale=320:180 -ovc lavc -oac pcm -o jane-quarter.avi
+# mencoder ${FILE} -vf scale=320:180 -ovc lavc -oac pcm -o foo
+# mencoder ${FILE} -ovc lavc -oac pcm -o foo.avi
+mencoder ${FILE} -o title2.avi -ovc lavc -lavcopts vcodec=png -oac copy

@@ -1,0 +1,13 @@
+#!/bin/bash
+set -o errexit
+set -o nounset
+
+AUDIO="stream.wav"
+VIDEO="stream.yuv"
+NAME="gump"
+# encoder_example --two-pass --video-rate-target 200 --output twopass.ogv stream.wav stream.yuv
+
+encoder_example --soft-target -v 7 -V 3397 --two-pass --first-pass "$NAME".pass stream.yuv -o "$NAME".ogv
+encoder_example --soft-target -v 7 -V 3397 --two-pass --second-pass "$NAME".pass -a -1 stream.wav stream.yuv -o "$NAME"2.ogv
+
+# alsa-oss
